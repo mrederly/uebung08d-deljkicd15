@@ -1,35 +1,63 @@
 package at.fhj.itm;
 
-public class StringQueue implements Queue {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
-	@Override
-	public boolean offer(String obj) {
-		// TODO Auto-generated method stub
-		return false;
+public class StringQueue implements Queue
+{
+	List<String>	queue	= new ArrayList<String>();
+	private int		max;
+	
+	public StringQueue(int max)
+	{
+		this.max = max;
 	}
 
-	@Override
-	public String poll() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean offer(String obj)
+	{
+		if (queue.size() == max)
+			return false;
+
+		queue.add(obj);
+		return true;
 	}
 
-	@Override
-	public String remove() {
-		// TODO Auto-generated method stub
-		return null;
+	public String poll()
+	{
+		if (queue.size() == 0)
+			return null;
+
+		String tmp = queue.get(0);
+		queue.remove(0);
+		return tmp;
 	}
 
-	@Override
-	public String peek() {
-		// TODO Auto-generated method stub
-		return null;
+	public String remove()
+	{
+		if (queue.size() == 0)
+			throw new NoSuchElementException();
+
+		String tmp = queue.get(0);
+		queue.remove(0);
+		return tmp;
 	}
 
-	@Override
-	public String element() {
-		// TODO Auto-generated method stub
-		return null;
+	public String peek()
+	{
+		if (queue.size() == 0)
+			return null;
+
+		return queue.get(0);
+	}
+
+	public String element()
+	{
+
+		if (queue.size() == 0)
+			throw new NoSuchElementException();
+
+		return queue.get(0);
 	}
 
 }
